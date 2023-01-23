@@ -149,7 +149,7 @@ const Home = () => {
       D4: "255686__samulis__marimba-d4.wav",
       E5: "255687__samulis__marimba-e5.wav",
       E3: "255688__samulis__marimba-e3.wav",
-      G4: "255689__samulis__marimba-g4.wav",
+      //G4: "255689__samulis__marimba-g4.wav",
       F2: "255690__samulis__marimba-f2.wav",
       F6: "255691__samulis__marimba-f6.wav",
       G3: "255692__samulis__marimba-g3.wav",
