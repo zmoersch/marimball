@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Matter, { Body } from "matter-js";
 import * as Tone from "tone";
+import { Button } from "@mui/material";
 
 /**
  * COMPONENT
  */
 const Home = () => {
+  const [running, setRunning] = useState(false);
   // module aliases
   var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -20,9 +22,14 @@ const Home = () => {
   // create an engine
   var engine = Engine.create();
 
+  const newDiv = document.createElement("div");
+  newDiv.setAttribute("id", "container");
+
+  document.body.appendChild(newDiv);
+
   // create a renderer
   var render = Render.create({
-    element: document.body,
+    element: newDiv,
     engine: engine,
     options: {
       width: 1300,
@@ -78,7 +85,7 @@ const Home = () => {
   const canvMouse = Matter.Mouse.create(
     document.getElementsByClassName("canvas")[0]
   );
-  Matter.Mouse.setOffset(canvMouse, { x: 0, y: -133 });
+  Matter.Mouse.setOffset(canvMouse, { x: -60, y: -125 });
   const mouseC = MouseConstraint.create(engine, { mouse: canvMouse });
 
   // add all of the bodies to the world
@@ -155,7 +162,7 @@ const Home = () => {
     balls.forEach((ball) => {
       blocks.forEach((block) => {
         if (Collision.collides(ball, block) !== null) {
-          sampler.triggerAttackRelease(block.note, "4n");
+          sampler.triggerAttackRelease(block.note, 3);
           Body.setAngle(ball, 180);
           Body.setAngularVelocity(ball, 1);
         }
@@ -166,7 +173,12 @@ const Home = () => {
   Events.on(engine, "collisionStart", (event) => collisionHandler());
 
   // run the renderer
-  Render.run(render);
+  useEffect(() => {
+    if (!running) {
+      Render.run(render);
+      setRunning(false);
+    }
+  });
 
   // create runner
   var runner = Runner.create();
@@ -176,7 +188,14 @@ const Home = () => {
     Runner.run(runner, engine);
   };
 
-  return <button onClick={startHandler}>test</button>;
+  return (
+    <div id="buttonContainer">
+      <Button variant="contained" id="startButton" onClick={startHandler}>
+        Begin
+      </Button>
+      ;
+    </div>
+  );
 };
 
 export default Home;
