@@ -17,7 +17,12 @@ const Navbar = () => {
     <>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Typography variant="h3" color="white" mt={2} mb={2}>
-          <NavLink to="/">Marimball</NavLink>
+          <NavLink to="/home">Marimball</NavLink>
+        </Typography>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography variant="h4" color="white" mt={2} mb={2}>
+          <NavLink to="/about">About</NavLink>
         </Typography>
       </Box>
     </>

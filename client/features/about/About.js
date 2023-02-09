@@ -3,13 +3,17 @@ import { Typography } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const About = () => {
-  const navigate = useNavigate();
+  const musicDiv = document.getElementById("container");
+  if (musicDiv) document.body.removeChild(musicDiv);
 
-  navigate(0);
+  console.log("test");
 
   return (
     <div id="about">
-      <Typography variant="h3">Marimball</Typography>
+      <Typography variant="p" color="white">
+        Marimba sampler made with Tone.js using sound pack created by Samulis
+        (https://freesound.org/people/Samulis/packs/15684/)
+      </Typography>
     </div>
   );
 };

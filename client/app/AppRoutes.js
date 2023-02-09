@@ -11,19 +11,11 @@ import About from "../features/about/About";
  */
 
 const AppRoutes = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(me());
-  }, []);
-
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route to="/home" element={<Home />} />
-        <Route to="/about" element={<About />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
